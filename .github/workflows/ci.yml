@@ -36,8 +36,9 @@ jobs:
     - name: SonarQube Scan
       run: |
         mvn sonar:sonar \
-          -Dsonar.projectKey=d54e37967f9d74df9a4f9b8838ace25e9f51f846 \
-          -Dsonar.host.url=https://sonarcloud.io \
-          -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+          -Dsonar.organization=<eich58> \
+          -Dsonar.projectKey=ExamenDos:com.itt.java:ExamenDOS \
+          -Dsonar.host.url=<https://sonarcloud.io> \
+          -Dsonar.login=<d54e37967f9d74df9a4f9b8838ace25e9f51f846>
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

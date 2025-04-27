@@ -42,6 +42,3 @@ jobs:
             -Dsonar.login=${{ secrets.SONAR_TOKEN }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          -Dsonar.login=<d54e37967f9d74df9a4f9b8838ace25e9f51f846>
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

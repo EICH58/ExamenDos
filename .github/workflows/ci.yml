@@ -37,7 +37,7 @@ jobs:
       run: |
         mvn sonar:sonar \
             -Dsonar.organization=eich58 \
-            -Dsonar.projectKey=ExamenDos \
+            -Dsonar.projectKey=ExamenDos:com.itt.java:ExamenDOS \
             -Dsonar.host.url=https://sonarcloud.io\
             -Dsonar.login=${{ secrets.SONAR_TOKEN }}
       env:

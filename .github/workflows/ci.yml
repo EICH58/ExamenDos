@@ -32,3 +32,12 @@ jobs:
       with:
         name: test-results
         path: target/surefire-reports/
+        
+    - name: SonarQube Scan
+      run: |
+        mvn sonar:sonar \
+          -Dsonar.projectKey=ExamenDos \
+          -Dsonar.host.url=https://sonarcloud.io \
+          -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

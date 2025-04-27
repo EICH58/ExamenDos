@@ -36,7 +36,7 @@ jobs:
     - name: SonarQube Scan
       run: |
         mvn sonar:sonar \
-          -Dsonar.projectKey=ExamenDos \
+          -Dsonar.projectKey=eich58 \
           -Dsonar.host.url=https://sonarcloud.io \
           -Dsonar.login=${{ secrets.SONAR_TOKEN }}
       env:

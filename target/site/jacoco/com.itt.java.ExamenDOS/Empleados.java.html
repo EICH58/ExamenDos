@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Empleados.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ExamenDOS</a> &gt; <a href="index.source.html" class="el_package">com.itt.java.ExamenDOS</a> &gt; <span class="el_source">Empleados.java</span></div><h1>Empleados.java</h1><pre class="source lang-java linenums">package com.itt.java.ExamenDOS;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import javax.swing.JTable;
+import javax.swing.JScrollPane;
+import java.awt.Font;
+import javax.swing.table.DefaultTableModel;
+
+import com.itt.java.ExamenDOS.App.DatabaseConnection;
+
+import java.awt.event.ActionListener;
+import java.text.MessageFormat;
+import java.awt.event.ActionEvent;
+import java.awt.print.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+ class Empleados {
+
+	JFrame frame;
+	private JTextField textField;
+	private JTable table;
+	private JTextField textField_1;
+	private JTextField textField_2;
+	private JTextField textField_3;
+	private JTextField textField_4;
+	private JTextField textField_5;
+	private JTextField textField_6;
+	private JTextField textField_7;
+	
+<span class="fc" id="L38">	Connection conn = null;</span>
+<span class="fc" id="L39">	PreparedStatement pst = null;</span>
+<span class="fc" id="L40">	ResultSet rs = null;</span>
+	
+<span class="fc" id="L42">	DefaultTableModel model = new DefaultTableModel();</span>
+
+	/**
+	 * Launch the application.
+	 */
+	
+	public void updateTable() 
+	{
+<span class="fc" id="L50">		conn = DatabaseConnection.ConnectDB();</span>
+		
+<span class="pc bpc" id="L52" title="1 of 2 branches missed.">		if(conn!=null) </span>
+		{
+<span class="fc" id="L54">			String sql = &quot;Select IDEmpleado, NSS, Nombre, Apellido, Genero, FechaNacimiento, Edad, Salario&quot;;</span>
+		
+			try 
+			{
+<span class="nc" id="L58">				pst = conn.prepareStatement(sql);</span>
+<span class="nc" id="L59">				rs = pst.executeQuery();</span>
+<span class="nc" id="L60">				Object[] columnData = new Object[8];</span>
+			
+<span class="nc bnc" id="L62" title="All 2 branches missed.">				while(rs.next()) </span>
+				{
+<span class="nc" id="L64">					columnData[0]=rs.getString(&quot;IDEmpleado&quot;);</span>
+<span class="nc" id="L65">					columnData[1]=rs.getString(&quot;NSS&quot;);</span>
+<span class="nc" id="L66">					columnData[2]=rs.getString(&quot;Nombre&quot;);</span>
+<span class="nc" id="L67">					columnData[3]=rs.getString(&quot;Apellido&quot;);</span>
+<span class="nc" id="L68">					columnData[4]=rs.getString(&quot;Genero&quot;);</span>
+<span class="nc" id="L69">					columnData[5]=rs.getString(&quot;FechaNacimiento&quot;);</span>
+<span class="nc" id="L70">					columnData[6]=rs.getString(&quot;Edad&quot;);</span>
+<span class="nc" id="L71">					columnData[7]=rs.getString(&quot;Salario&quot;);</span>
+					
+<span class="nc" id="L73">					model.addRow(columnData);</span>
+				}
+			}
+<span class="fc" id="L76">			catch(Exception e) </span>
+			{
+<span class="fc" id="L78">				JOptionPane.showMessageDialog(null, e);</span>
+<span class="nc" id="L79">			}</span>
+		}
+<span class="fc" id="L81">	}</span>
+	/*public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Empleados window = new Empleados();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}*/
+
+	/**
+	 * Create the application.
+	 */
+<span class="fc" id="L98">	public Empleados() {</span>
+<span class="fc" id="L99">		initialize();</span>
+		
+<span class="fc" id="L101">		Connection conn = DatabaseConnection.ConnectDB();</span>
+<span class="fc" id="L102">		Object col[] = {&quot;IDEmp&quot;,&quot;NSS&quot;,&quot;Nombre&quot;,&quot;Apellido&quot;,&quot;Genero&quot;,&quot;DiaNacimiento&quot;,&quot;Edad&quot;,&quot;Salario&quot;};</span>
+<span class="fc" id="L103">		model.setColumnIdentifiers(col);</span>
+
+<span class="fc" id="L105">	}</span>
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	
+	private void initialize() {
+<span class="fc" id="L112">		frame = new JFrame();</span>
+<span class="fc" id="L113">		frame.setBounds(0, 0, 1200, 800);</span>
+<span class="fc" id="L114">		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);</span>
+<span class="fc" id="L115">		frame.getContentPane().setLayout(null);</span>
+		
+<span class="fc" id="L117">		JLabel lblNewLabel = new JLabel(&quot;ID Empleado&quot;);</span>
+<span class="fc" id="L118">		lblNewLabel.setFont(new Font(&quot;Dialog&quot;, Font.BOLD, 18));</span>
+<span class="fc" id="L119">		lblNewLabel.setBounds(32, 137, 122, 32);</span>
+<span class="fc" id="L120">		frame.getContentPane().add(lblNewLabel);</span>
+		
+<span class="fc" id="L122">		textField = new JTextField();</span>
+<span class="fc" id="L123">		textField.setFont(new Font(&quot;Dialog&quot;, Font.BOLD, 18));</span>
+<span class="fc" id="L124">		textField.setBounds(207, 137, 170, 32);</span>
+<span class="fc" id="L125">		frame.getContentPane().add(textField);</span>
+<span class="fc" id="L126">		textField.setColumns(10);</span>
+		
+<span class="fc" id="L128">		JButton btnNewButton = new JButton(&quot;Agregar&quot;);</span>
+<span class="fc" id="L129">		btnNewButton.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L131">				String sql = &quot;INSERT INTO empleados(IDEmpleado,NSS,Nombre,Apellido,Genero,FechaNacimiento,Edad,Salario)VALUES(?,?,?,?,?,?,?,?)&quot;;</span>
+				
+				try 
+				{
+<span class="nc" id="L135">					pst = conn.prepareStatement(sql);</span>
+<span class="nc" id="L136">					pst.setString(1, textField.getText());</span>
+<span class="nc" id="L137">					pst.setString(2, textField_1.getText());</span>
+<span class="nc" id="L138">					pst.setString(3, textField_2.getText());</span>
+<span class="nc" id="L139">					pst.setString(4, textField_3.getText());</span>
+<span class="nc" id="L140">					pst.setString(5, textField_4.getText());</span>
+<span class="nc" id="L141">					pst.setString(6, textField_5.getText());</span>
+<span class="nc" id="L142">					pst.setString(7, textField_6.getText());</span>
+<span class="nc" id="L143">					pst.setString(8, textField_7.getText());</span>
+					
+<span class="nc" id="L145">					pst.execute();</span>
+					
+<span class="nc" id="L147">					rs.close();</span>
+<span class="nc" id="L148">					pst.close();</span>
+				}
+				
+<span class="nc" id="L151">				catch(Exception ev)</span>
+				{			
+<span class="nc" id="L153">					JOptionPane.showMessageDialog(null, &quot;Actualizacion del Sistema Completo&quot;);</span>
+<span class="nc" id="L154">				}</span>
+			
+<span class="nc" id="L156">				DefaultTableModel model = (DefaultTableModel) table.getModel();</span>
+<span class="nc" id="L157">				model .addRow(new Object[] {</span>
+<span class="nc" id="L158">						textField.getText(),</span>
+<span class="nc" id="L159">						textField_1.getText(),</span>
+<span class="nc" id="L160">						textField_2.getText(),</span>
+<span class="nc" id="L161">						textField_3.getText(),</span>
+<span class="nc" id="L162">						textField_4.getText(),</span>
+<span class="nc" id="L163">						textField_5.getText(),</span>
+<span class="nc" id="L164">						textField_6.getText(),</span>
+<span class="nc" id="L165">						textField_7.getText()</span>
+				});
+<span class="nc bnc" id="L167" title="All 2 branches missed.">				if(table.getSelectedRow() == -1) </span>
+				{
+<span class="nc bnc" id="L169" title="All 2 branches missed.">					if(table.getRowCount() == 0) </span>
+					{
+<span class="nc" id="L171">						JOptionPane.showMessageDialog(null, &quot;Actualizacion de Datos Confirmada&quot;, &quot;Sistema de Base de Datos de Empleado&quot;,</span>
+								JOptionPane.OK_OPTION);
+					}
+				}
+<span class="nc" id="L175">			}</span>
+		});
+<span class="fc" id="L177">		btnNewButton.setBounds(200, 648, 177, 55);</span>
+<span class="fc" id="L178">		frame.getContentPane().add(btnNewButton);</span>
+		
+<span class="fc" id="L180">		JScrollPane scrollPane = new JScrollPane();</span>
+<span class="fc" id="L181">		scrollPane.setBounds(389, 137, 783, 469);</span>
+<span class="fc" id="L182">		frame.getContentPane().add(scrollPane);</span>
+		
+<span class="fc" id="L184">		table = new JTable();</span>
+<span class="fc" id="L185">		table.setFont(new Font(&quot;Dialog&quot;, Font.BOLD, 14));</span>
+<span class="fc" id="L186">		table.setModel(new DefaultTableModel(</span>
+			new Object[][] {
+			},
+			new String[] {
+				&quot;IDEmpleado&quot;, &quot;NSS&quot;, &quot;Nombre&quot;, &quot;Apellido&quot;, &quot;Genero&quot;, &quot;Fecha Nacimiento&quot;, &quot;Edad&quot;, &quot;Salario&quot;
+			}
+		));
+<span class="fc" id="L193">		scrollPane.setViewportView(table);</span>
+		
+<span class="fc" id="L195">		JLabel lblNss = new JLabel(&quot;NSS&quot;);</span>
+<span class="fc" id="L196">		lblNss.setFont(new Font(&quot;Dialog&quot;, Font.BOLD, 18));</span>
+<span class="fc" id="L197">		lblNss.setBounds(32, 198, 89, 32);</span>
+<span class="fc" id="L198">		frame.getContentPane().add(lblNss);</span>
+		
+<span class="fc" id="L200">		JLabel lblNombre = new JLabel(&quot;Nombre&quot;);</span>
+<span class="fc" id="L201">		lblNombre.setFont(new Font(&quot;Dialog&quot;, Font.BOLD, 18));</span>
+<span class="fc" id="L202">		lblNombre.setBounds(32, 259, 89, 32);</span>
+<span class="fc" id="L203">		frame.getContentPane().add(lblNombre);</span>
+		
+<span class="fc" id="L205">		JLabel lblApellido = new JLabel(&quot;Apellido&quot;);</span>
+<span class="fc" id="L206">		lblApellido.setFont(new Font(&quot;Dialog&quot;, Font.BOLD, 18));</span>
+<span class="fc" id="L207">		lblApellido.setBounds(35, 320, 89, 32);</span>
+<span class="fc" id="L208">		frame.getContentPane().add(lblApellido);</span>
+		
+<span class="fc" id="L210">		JLabel lblGenero = new JLabel(&quot;Genero&quot;);</span>
+<span class="fc" id="L211">		lblGenero.setFont(new Font(&quot;Dialog&quot;, Font.BOLD, 18));</span>
+<span class="fc" id="L212">		lblGenero.setBounds(32, 380, 89, 32);</span>
+<span class="fc" id="L213">		frame.getContentPane().add(lblGenero);</span>
+		
+<span class="fc" id="L215">		JLabel lblFechaNacimiento = new JLabel(&quot;Fecha Nacimiento&quot;);</span>
+<span class="fc" id="L216">		lblFechaNacimiento.setFont(new Font(&quot;Dialog&quot;, Font.BOLD, 18));</span>
+<span class="fc" id="L217">		lblFechaNacimiento.setBounds(33, 443, 177, 32);</span>
+<span class="fc" id="L218">		frame.getContentPane().add(lblFechaNacimiento);</span>
+		
+<span class="fc" id="L220">		JLabel lblEdad = new JLabel(&quot;Edad&quot;);</span>
+<span class="fc" id="L221">		lblEdad.setFont(new Font(&quot;Dialog&quot;, Font.BOLD, 18));</span>
+<span class="fc" id="L222">		lblEdad.setBounds(35, 505, 89, 32);</span>
+<span class="fc" id="L223">		frame.getContentPane().add(lblEdad);</span>
+		
+<span class="fc" id="L225">		JLabel lblSalario = new JLabel(&quot;Salario&quot;);</span>
+<span class="fc" id="L226">		lblSalario.setFont(new Font(&quot;Dialog&quot;, Font.BOLD, 18));</span>
+<span class="fc" id="L227">		lblSalario.setBounds(32, 574, 89, 32);</span>
+<span class="fc" id="L228">		frame.getContentPane().add(lblSalario);</span>
+		
+<span class="fc" id="L230">		textField_1 = new JTextField();</span>
+<span class="fc" id="L231">		textField_1.setFont(new Font(&quot;Dialog&quot;, Font.BOLD, 18));</span>
+<span class="fc" id="L232">		textField_1.setColumns(10);</span>
+<span class="fc" id="L233">		textField_1.setBounds(207, 198, 170, 32);</span>
+<span class="fc" id="L234">		frame.getContentPane().add(textField_1);</span>
+		
+<span class="fc" id="L236">		textField_2 = new JTextField();</span>
+<span class="fc" id="L237">		textField_2.setFont(new Font(&quot;Dialog&quot;, Font.BOLD, 18));</span>
+<span class="fc" id="L238">		textField_2.setColumns(10);</span>
+<span class="fc" id="L239">		textField_2.setBounds(207, 259, 170, 32);</span>
+<span class="fc" id="L240">		frame.getContentPane().add(textField_2);</span>
+		
+<span class="fc" id="L242">		textField_3 = new JTextField();</span>
+<span class="fc" id="L243">		textField_3.setFont(new Font(&quot;Dialog&quot;, Font.BOLD, 18));</span>
+<span class="fc" id="L244">		textField_3.setColumns(10);</span>
+<span class="fc" id="L245">		textField_3.setBounds(207, 320, 170, 32);</span>
+<span class="fc" id="L246">		frame.getContentPane().add(textField_3);</span>
+		
+<span class="fc" id="L248">		textField_4 = new JTextField();</span>
+<span class="fc" id="L249">		textField_4.setFont(new Font(&quot;Dialog&quot;, Font.BOLD, 18));</span>
+<span class="fc" id="L250">		textField_4.setColumns(10);</span>
+<span class="fc" id="L251">		textField_4.setBounds(207, 380, 170, 32);</span>
+<span class="fc" id="L252">		frame.getContentPane().add(textField_4);</span>
+		
+<span class="fc" id="L254">		textField_5 = new JTextField();</span>
+<span class="fc" id="L255">		textField_5.setFont(new Font(&quot;Dialog&quot;, Font.BOLD, 18));</span>
+<span class="fc" id="L256">		textField_5.setColumns(10);</span>
+<span class="fc" id="L257">		textField_5.setBounds(207, 443, 170, 32);</span>
+<span class="fc" id="L258">		frame.getContentPane().add(textField_5);</span>
+		
+<span class="fc" id="L260">		textField_6 = new JTextField();</span>
+<span class="fc" id="L261">		textField_6.setFont(new Font(&quot;Dialog&quot;, Font.BOLD, 18));</span>
+<span class="fc" id="L262">		textField_6.setColumns(10);</span>
+<span class="fc" id="L263">		textField_6.setBounds(207, 505, 170, 32);</span>
+<span class="fc" id="L264">		frame.getContentPane().add(textField_6);</span>
+		
+<span class="fc" id="L266">		textField_7 = new JTextField();</span>
+<span class="fc" id="L267">		textField_7.setFont(new Font(&quot;Dialog&quot;, Font.BOLD, 18));</span>
+<span class="fc" id="L268">		textField_7.setColumns(10);</span>
+<span class="fc" id="L269">		textField_7.setBounds(207, 574, 170, 32);</span>
+<span class="fc" id="L270">		frame.getContentPane().add(textField_7);</span>
+		
+<span class="fc" id="L272">		JButton btnM = new JButton(&quot;Imprimir&quot;);</span>
+<span class="fc" id="L273">		btnM.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+				
+<span class="nc" id="L276">				MessageFormat header = new MessageFormat(&quot;Impresion en progreso&quot;);</span>
+<span class="nc" id="L277">				MessageFormat footer = new MessageFormat(&quot;Page {0, number, integer}&quot;);</span>
+				
+				try {
+<span class="nc" id="L280">					table.print();</span>
+				}
+<span class="nc" id="L282">				catch(java.awt.print.PrinterException ev) {</span>
+<span class="nc" id="L283">					System.err.format(&quot;No se encontro Impresora&quot;, ev.getMessage());</span>
+<span class="nc" id="L284">				}</span>
+<span class="nc" id="L285">			}</span>
+		});
+<span class="fc" id="L287">		btnM.setBounds(523, 648, 177, 55);</span>
+<span class="fc" id="L288">		frame.getContentPane().add(btnM);</span>
+		
+<span class="fc" id="L290">		JButton btnReset = new JButton(&quot;Reset&quot;);</span>
+<span class="fc" id="L291">		btnReset.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L293">				textField.setText(null);</span>
+<span class="nc" id="L294">				textField_1.setText(null);</span>
+<span class="nc" id="L295">				textField_2.setText(null);</span>
+<span class="nc" id="L296">				textField_3.setText(null);</span>
+<span class="nc" id="L297">				textField_4.setText(null);</span>
+<span class="nc" id="L298">				textField_5.setText(null);</span>
+<span class="nc" id="L299">				textField_6.setText(null);</span>
+<span class="nc" id="L300">				textField_7.setText(null);</span>
+<span class="nc" id="L301">			}</span>
+		});
+<span class="fc" id="L303">		btnReset.setBounds(766, 648, 177, 55);</span>
+<span class="fc" id="L304">		frame.getContentPane().add(btnReset);</span>
+		
+<span class="fc" id="L306">		JButton btnSalir = new JButton(&quot;Salir&quot;);</span>
+<span class="fc" id="L307">		btnSalir.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L309">				frame = new JFrame(&quot;Exit&quot;);</span>
+<span class="nc bnc" id="L310" title="All 2 branches missed.">				if (JOptionPane.showConfirmDialog(frame, &quot;Confirma si Deseas Salir&quot;, &quot;Sistema de Base de Datos de Empleados&quot;,</span>
+						JOptionPane.YES_NO_OPTION)==JOptionPane.YES_NO_OPTION){
+<span class="nc" id="L312">						System.exit(0);</span>
+					}
+<span class="nc" id="L314">			}</span>
+		});
+<span class="fc" id="L316">		btnSalir.setBounds(993, 648, 177, 55);</span>
+<span class="fc" id="L317">		frame.getContentPane().add(btnSalir);</span>
+		
+<span class="fc" id="L319">		JLabel lblSistemaDeManejo = new JLabel(&quot;Sistema de Manejo de Base de Datos de Empleados&quot;);</span>
+<span class="fc" id="L320">		lblSistemaDeManejo.setFont(new Font(&quot;Dialog&quot;, Font.BOLD, 32));</span>
+<span class="fc" id="L321">		lblSistemaDeManejo.setBounds(207, 45, 822, 32);</span>
+<span class="fc" id="L322">		frame.getContentPane().add(lblSistemaDeManejo);</span>
+<span class="fc" id="L323">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

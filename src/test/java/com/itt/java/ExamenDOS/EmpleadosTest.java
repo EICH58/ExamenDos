@@ -20,6 +20,8 @@ class EmpleadosTest {
     
     @BeforeEach
     void setUp() {
+        System.setProperty("java.awt.headless", "true");
+    	assert GraphicsEnvironment.isHeadless(); // Optional check
         empleados = new Empleados(testConn);
         testConn = App.DatabaseConnection.ConnectDB();
         try {

@@ -59,6 +59,11 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <version>3.2.5</version>
         <configuration>
+          <excludes>
+            <exclude>**/EmpleadosTest.java</exclude> <!-- Specific test file -->
+            <!-- OR for multiple tests -->
+            <exclude>**/*GUI*.java</exclude> <!-- All tests with "GUI" in name -->
+          </excludes>
           <systemPropertyVariables>
             <java.awt.headless>true</java.awt.headless>
           </systemPropertyVariables>

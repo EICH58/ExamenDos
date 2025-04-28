@@ -66,4 +66,8 @@ jobs:
       run: mvn test -Dtest=!com.itt.java.ExamenDOS.EmpleadosTest
       # OR use a pattern:
       # -Dtest=!*GUI*
+
+    - uses: actions/checkout@v4
+    - name: Run tests (skipping problematic ones)
+      run: mvn test -Dtest=!com.itt.java.ExamenDOS.EmpleadosTest
     

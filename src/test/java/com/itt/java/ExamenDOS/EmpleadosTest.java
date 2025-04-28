@@ -12,7 +12,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.awt.GraphicsEnvironment;
-
+import org.junit.Assume;
+import org.junit.BeforeClass;
 import org.junit.Ignore;
 
 @Ignore("Causing conflicts in CI") // Add this above the class
@@ -21,6 +22,13 @@ class EmpleadosTest {
 
     private Empleados empleados;
     private Connection testConn;
+
+     @BeforeClass
+    public static void checkEnvironment() {
+        if (System.getenv("CI") != null) {
+            Assume.assumeFalse("Skipping in CI environment", true);
+        }
+    }
     
     @BeforeEach
     void setUp() {

@@ -20,7 +20,7 @@ class EmpleadosTest {
     @BeforeEach
     void setUp() {
         empleados = new Empleados(testConn);
-        testConn = App.DatabaseConnection.ConnectDB();
+        testConn = DatabaseConnection.ConnectDB();
         try {
             testConn.setAutoCommit(false); // Desactivar autocommit
         } catch (SQLException e) {

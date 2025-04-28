@@ -1,8 +1,6 @@
 package com.itt.java.ExamenDOS;
 
 import java.awt.EventQueue;
-import java.sql.*;
-import javax.swing.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import javax.swing.JOptionPane;
@@ -22,22 +20,22 @@ public class App {
 	        }
 	    	
 	    	EventQueue.invokeLater(new Runnable() {
-				public void run() {
-					try {
-						Empleados window = new Empleados();
-						window.frame.setVisible(true);
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-				}
-			});
+	    	    public void run() {
+	    	        try {
+	    	            Empleados window = new Empleados(conn); // Pasar la conexión
+	    	            window.frame.setVisible(true);
+	    	        } catch (Exception e) {
+	    	            e.printStackTrace();
+	    	        }
+	    	    }
+	    	});
 	}
 	
 	public static class DatabaseConnection {
 	    public static Connection ConnectDB() {
 	        try {
 	            Class.forName("org.sqlite.JDBC");
-	            Connection conn = DriverManager.getConnection("jdbc:sqlite:/home/eich3/eclipse-workspace/ExamenDOS/resources/empleados.db");
+	            Connection conn = DriverManager.getConnection("jdbc:sqlite:/home/eich3/eclipse-workspace/ExamenDOS/resources/empleados");
 	            JOptionPane.showMessageDialog(null, "Coneccion Establecida");
 	            return conn;
 	        } catch (Exception e) {

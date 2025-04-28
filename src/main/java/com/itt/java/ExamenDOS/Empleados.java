@@ -1,7 +1,5 @@
 package com.itt.java.ExamenDOS;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -17,7 +15,6 @@ import com.itt.java.ExamenDOS.App.DatabaseConnection;
 import java.awt.event.ActionListener;
 import java.text.MessageFormat;
 import java.awt.event.ActionEvent;
-import java.awt.print.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -95,13 +92,12 @@ import java.sql.ResultSet;
 	/**
 	 * Create the application.
 	 */
-	public Empleados() {
-		initialize();
-		
-		Connection conn = DatabaseConnection.ConnectDB();
-		Object col[] = {"IDEmp","NSS","Nombre","Apellido","Genero","DiaNacimiento","Edad","Salario"};
-		model.setColumnIdentifiers(col);
-
+	public Empleados(Connection connection) {
+	    this.conn = connection; // Usa la conexión existente
+	    initialize();
+	    
+	    Object col[] = {"IDEmp","NSS","Nombre","Apellido","Genero","DiaNacimiento","Edad","Salario"};
+	    model.setColumnIdentifiers(col);
 	}
 
 	/**

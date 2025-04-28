@@ -37,7 +37,7 @@ public class App {
 	    public static Connection ConnectDB() {
 	        try {
 	            Class.forName("org.sqlite.JDBC");
-	            Connection conn = DriverManager.getConnection("jdbc:sqlite:/home/eich3/eclipse-workspace/ExamenDOS/resources/empleados.db");
+	            Connection conn = DriverManager.getConnection("jdbc:sqlite:/home/eich3/eclipse-workspace/ExamenDOS/resources/empleados");
 	            JOptionPane.showMessageDialog(null, "Coneccion Establecida");
 	            return conn;
 	        } catch (Exception e) {

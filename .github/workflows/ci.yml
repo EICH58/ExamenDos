@@ -39,7 +39,9 @@ jobs:
             -Dsonar.organization=eich58 \
             -Dsonar.projectKey=EICH58_ExamenDos \
             -Dsonar.host.url=https://sonarcloud.io\
-            
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
     - name: Set up Xvfb
       uses: GabrielBB/xvfb-action@v1
       with:
@@ -50,5 +52,3 @@ jobs:
           echo "Display: $DISPLAY"
           xdpyinfo -display $DISPLAY
             -Dsonar.login=${{ secrets.SONAR_TOKEN }}
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

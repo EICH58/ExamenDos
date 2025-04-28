@@ -1,6 +1,0 @@
-CREATE TABLE IF NOT EXISTS empleados (
-    id INTEGER PRIMARY KEY,
-    nombre TEXT NOT NULL,
-    apellido TEXT NOT NULL,
-    salario REAL NOT NULL
-);

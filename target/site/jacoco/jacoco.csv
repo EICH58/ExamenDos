@@ -1,9 +1,0 @@
-GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
-ExamenDOS,com.itt.java.ExamenDOS,Empleados,80,744,3,1,14,120,2,3,0,3
-ExamenDOS,com.itt.java.ExamenDOS,Empleados.new ActionListener() {...},18,6,2,0,4,1,2,1,1,1
-ExamenDOS,com.itt.java.ExamenDOS,App.DatabaseConnection,9,11,0,0,4,4,1,1,1,1
-ExamenDOS,com.itt.java.ExamenDOS,Empleados.new ActionListener() {...},183,6,4,0,30,1,3,1,1,1
-ExamenDOS,com.itt.java.ExamenDOS,Empleados.new ActionListener() {...},29,6,0,0,7,1,1,1,1,1
-ExamenDOS,com.itt.java.ExamenDOS,Empleados.new ActionListener() {...},41,6,0,0,9,1,1,1,1,1
-ExamenDOS,com.itt.java.ExamenDOS,App.new Runnable() {...},16,0,0,0,7,0,2,0,2,0
-ExamenDOS,com.itt.java.ExamenDOS,App,19,0,2,0,7,0,3,0,2,0

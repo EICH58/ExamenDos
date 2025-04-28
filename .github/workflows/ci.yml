@@ -43,12 +43,21 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Set up Xvfb
-      uses: GabrielBB/xvfb-action@v1
-      with:
-          run: mvn test  # The command to run inside Xvfb
-      
-    - name: Verify Xvfb is working
+    - name: Install Xvfb and dependencies
       run: |
+       sudo apt-get update
+       sudo apt-get install -y xvfb x11-utils
+
+    - name: Start Xvfb and set DISPLAY
+      run: |
+       echo "Starting Xvfb on :99"
+       Xvfb :99 -screen 0 1280x1024x24 &
+       export DISPLAY=:99
+       echo "DISPLAY=$DISPLAY" >> $GITHUB_ENV
+
+    - name: Verify Xvfb
+      run: |
+       echo "Display: $DISPLAY"
+       xdpyinfo -display $DISPLAY
           echo "Display: $DISPLAY"
           xdpyinfo -display $DISPLAY

@@ -11,8 +11,6 @@ import javax.swing.JScrollPane;
 import java.awt.Font;
 import javax.swing.table.DefaultTableModel;
 
-import com.itt.java.ExamenDOS.App.DatabaseConnection;
-
 import java.awt.event.ActionListener;
 import java.text.MessageFormat;
 import java.awt.event.ActionEvent;

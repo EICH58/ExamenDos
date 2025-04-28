@@ -16,6 +16,13 @@ import org.junit.Assume;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 
+import org.junit.Assume;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Ignore;
+import org.junit.Test;
+import static org.junit.Assert.*;
+
 @Ignore("Causing conflicts in CI") // Add this above the class
 
 class EmpleadosTest {
@@ -23,11 +30,17 @@ class EmpleadosTest {
     private Empleados empleados;
     private Connection testConn;
 
-     @BeforeClass
+  @BeforeClass
     public static void checkEnvironment() {
-        if (System.getenv("CI") != null) {
-            Assume.assumeFalse("Skipping in CI environment", true);
-        }
+        // Skip in CI environment
+        Assume.assumeFalse("Skipping in CI environment", 
+                          System.getenv("CI") != null);
+    }
+    
+    @Ignore("Temporarily disabled due to GUI conflicts")  // This will skip entire class
+    @Test
+    public void testMethod() {
+        // Test implementation
     }
     
     @BeforeEach

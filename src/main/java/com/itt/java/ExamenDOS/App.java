@@ -1,8 +1,6 @@
 package com.itt.java.ExamenDOS;
 
 import java.awt.EventQueue;
-import java.sql.*;
-import javax.swing.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import javax.swing.JOptionPane;
@@ -22,15 +20,15 @@ public class App {
 	        }
 	    	
 	    	EventQueue.invokeLater(new Runnable() {
-				public void run() {
-					try {
-						Empleados window = new Empleados();
-						window.frame.setVisible(true);
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-				}
-			});
+	    	    public void run() {
+	    	        try {
+	    	            Empleados window = new Empleados(conn); // Pasar la conexión
+	    	            window.frame.setVisible(true);
+	    	        } catch (Exception e) {
+	    	            e.printStackTrace();
+	    	        }
+	    	    }
+	    	});
 	}
 	
 	public static class DatabaseConnection {
